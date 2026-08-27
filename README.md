@@ -6,7 +6,7 @@
 2. short description
    The finance Analysis is an analytical report designed to help Rakesh(from Finance department) understand why Over the last few quarters, our Days Sales Outstanding (DSO) has been creeping up. Cash that should be in our account is sitting with customers longer than it should. This dashboard focuses on which customers have consistently been a problem and how late typically and how much money is at risk. This tool is intended for use by data analysts, the finance department, management, and data-driven strategists who want to understand DSO trends.
 
-   3. Tech Stack
+3. Tech Stack
 The dashboard was built using the following tools and technologies:
 
 Microsoft pipeline – Ingested ~2000+ customer records through an online dataset and applied transformations using notebook on the data.
@@ -26,15 +26,57 @@ Data covers ~2000+ customer records, including details such as invoice date, inv
 
 6. Feature Highlights
 Business Problem
-I used AI as a client, roleplaying as Rakesh from Finance department 
+I used AI as a client, roleplaying as Rakesh from Finance department where Our company sells on credit to distributors and business clients — standard 30/45/60 day payment terms. Over the last few quarters, our Days Sales Outstanding (DSO) has been creeping up. Cash that should be in our account is sitting with customers longer than it should.
 
 Key Questions:
 
-Which department is bleeding the most?
-Which job role is most affected by attrition?
-What is the average tenure after which employees leave?
-What is the salary band of employees who left?
-Do age group or marital status drive attrition?
-What education field did employees who left belong to?
-How does overtime affect attrition?
-Does business travel play a role in driving attrition?
+How much money are we actually talking about?
+Which customers have consistently been late?
+Is there a pattern in why people pay late?
+Is late payment behavior worsening month over month?
+When customers are late, how late?
+
+Goal of the Dashboard
+The goal of this dashboard was to create an interactive report that helped Finance department understand the cause of such a delay in payments, given that the standard 30/45/60 day payment terms. This dashboard helped Rakesh from Finance communicate to leadership and senior management what steps could be taken to reduce and manage DSO by identifying its key drivers.
+
+Key Visuals
+KPI'S used in this report:
+1. Money at risk: 53.96K - total invoice amount with late customers
+2. late customers: 83 - count of customers who paid late
+3. total customer:100 - distinct count of customers
+4. late customer % YoY Comparison: -3.51% - late payment performance improved by 3.51%
+5. avg days late: 9.68 - avg days customer paid after invoice date
+
+slicers used
+1. year - invoice year
+2. month - invoice month
+3. country code
+
+Total Invoices and Customer % Late Trend over time
+this chart is line and column combo chart in which the column represents the total invoices each month and line represents late customer %. so that we can see out of these many invoices see much % were late
+
+Customer % Late by Disputed Bills
+this chart is a bar chart which shows if the bill is disputed drives the late payment issues or not.
+
+Customers Late by 30+ days 
+this is a matrix of customers who paid after 30+ days to see whether the amount to be paid by them was more or not as it will help us plan our treasury easily and in advance 
+
+Top 10 Customers by Avg Days Late
+this is a matrix of customers who paid max of the payments late i.e max late customer % and it also consists of total invoices and avg days late
+
+Customer % Late by Type of Bills
+this is a bar chart that helps us understand whether paper bills or electronics bills are late or not. so that we can plan accordingly to shift to that bill which causes less late payment
+
+7. Insights
+
+ - Money at risk i.e. the total amount with late customer is 53.96K
+ - the DSO or we can say the late customer % year over year has improved by 3.5%.
+ - the top 10 customers whose late customer % is high needs to be called first.
+ - some of the customers who pay after 30 days are having high invoice amount.
+ - the bills that are disputed tends to have more late payments
+ - paper bills tends to generate more late payments
+ - the bills with large income an=mount band are receiving the most late payments
+
+8. Business Impact
+
+   -
