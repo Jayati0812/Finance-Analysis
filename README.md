@@ -103,15 +103,15 @@ A bar chart showing whether paper bills or electronic bills are more likely to b
   
 ## 9. Screenshots
 **Workspace (ws_finance)**
-![Workspace](images/Workspace.png)
+![Workspace](images/workspace_finance.png)
 **Data ingesting through pipeline(pl_ingest_finance)**
-![Dataflow_Gen2_data](images/Dataflow_Gen2_data.png)
+![Pipeline](Pipeline.png)
 **Data loading to Lakehouse (lh_finance)**
-![Dataflow_Gen2_to_Lakehouse](images/Dataflow_Gen2_to_Lakehouse.png)
+![Dataflow_Gen2_to_Lakehouse](images/data_loading_into_lakehouse.png)
 **Data in Lakehouse (lh_finance)**
-![Lakehouse](images/Lakehouse.png)
+![Lakehouse](images/Lakehouse_finance.png)
 **Semantic Model (Finance_Model)**
-![Semantic_Model](images/Semantic_Model.png)
+![Semantic_Model](images/finance_model.png)
 **Overview of Dashboard**
 ![Overview](images/Overview.png)
 **Implementing Row Level Security**
