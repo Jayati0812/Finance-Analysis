@@ -105,7 +105,7 @@ A bar chart showing whether paper bills or electronic bills are more likely to b
 **Workspace (ws_finance)**
 ![Workspace](images/workspace_finance.png)
 **Data ingesting through pipeline(pl_ingest_finance)**
-![Pipeline](Pipeline.png)
+![Pipeline](images/Pipeline.png)
 **Data loading to Lakehouse (lh_finance)**
 ![Dataflow_Gen2_to_Lakehouse](images/data_loading_into_lakehouse.png)
 **Data in Lakehouse (lh_finance)**
