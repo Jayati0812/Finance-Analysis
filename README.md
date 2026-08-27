@@ -1,123 +1,125 @@
-# Finance-Analysis
-1. project Title
-   Finance Analysis
-   built an end to end finance analysis in microsoft fabric ingesting ~2000+ accounts of customers through fabric pipeline to understand which customers have consistently been a problem and how much money is at risk.
+# Finance Analysis
 
-2. short description
-   The finance Analysis is an analytical report designed to help Rakesh(from Finance department) understand why Over the last few quarters, our Days Sales Outstanding (DSO) has been creeping up. Cash that should be in our account is sitting with customers longer than it should. This dashboard focuses on which customers have consistently been a problem and how late typically and how much money is at risk. This tool is intended for use by data analysts, the finance department, management, and data-driven strategists who want to understand DSO trends.
+## 1. Project Title
+**Finance Analysis**
 
-3. Tech Stack
+Built an end-to-end finance analysis solution in Microsoft Fabric, ingesting 2,000+ customer accounts through a Fabric pipeline to understand which customers have consistently been a problem and how much money is at risk.
+
+## 2. Short Description
+The Finance Analysis is an analytical report designed to help Rakesh (from the Finance department) understand why the company's Days Sales Outstanding (DSO) has been creeping up over the last few quarters — cash that should be in the company's account is sitting with customers longer than it should. This dashboard focuses on identifying which customers have consistently been a problem, how late they typically pay, and how much money is at risk. This tool is intended for use by data analysts, the finance department, management, and data-driven strategists who want to understand DSO trends.
+
+## 3. Tech Stack
 The dashboard was built using the following tools and technologies:
 
-Microsoft pipeline – Ingested ~2000+ customer records through an online dataset and applied transformations using notebook on the data.
-microsoft pyspark notebook – Data transformation, cleaning, and feature engineering for preparing the data using pyspark.
-Microsoft Lakehouse – Primary data source with structured Delta tables in the Tables section.
-Microsoft Fabric Semantic Model – Created the data model and built relationships.
-DAX (Data Analysis Expressions) – Used for calculated measures, dynamic visuals, and conditional logic.
-Power BI Desktop – Main data visualization platform used for report creation.
-OneLake Security - Created Column Level Security and row level security to ensure the safety of personal data.
-App - Published App_HR for end-user access.
-File Format – .pbix for development and .png for dashboard previews.
+- **Microsoft Fabric Pipeline** – Ingested ~2,000+ customer records through an online dataset and applied transformations using a notebook.
+- **Microsoft PySpark Notebook** – Data transformation, cleaning, and feature engineering for preparing the data using PySpark.
+- **Microsoft Lakehouse** – Primary data source with structured Delta tables in the Tables section.
+- **Microsoft Fabric Semantic Model** – Created the data model and built relationships.
+- **DAX (Data Analysis Expressions)** – Used for calculated measures, dynamic visuals, and conditional logic.
+- **Power BI Desktop** – Main data visualization platform used for report creation.
+- **OneLake Security** – Implemented column-level and row-level security to ensure the safety of personal data.
+- **App** – Published `App_Finance` for end-user access.
+- **File Format** – `.pbix` for development and `.png` for dashboard previews.
 
-4. Data Source
-Source: Finance Factoring - IBM Late Payment Histories
-Link: Kaggle ![Dataset](https://www.kaggle.com/datasets/hhenry/finance-factoring-ibm-late-payment-histories)
-Data covers ~2000+ customer records, including details such as invoice date, invoice amount, paperless bill, due date, days late, and days to settle, for the years 2012–2013.
+## 4. Data Source
+- **Source:** Finance Factoring – IBM Late Payment Histories
+- **Link:** [Kaggle Dataset](https://www.kaggle.com/datasets/hhenry/finance-factoring-ibm-late-payment-histories)
 
-5. Workflow
-   The end-to-end pipeline was built entirely within Microsoft Fabric:
+Data covers ~2,000+ customer records, including details such as invoice date, invoice amount, paperless bill, due date, days late, and days to settle, for the years 2012–2013.
 
-Workspace – Created ws_finance to host all Fabric items for this project.
-Notebook – Created a PySpark notebook and built the pipeline following medallion architecture: Bronze (raw invoice data ingested, checked types/nulls/row counts), Silver (cleaned, correctly typed, deduplicated), and Gold (aggregated and enriched with aging buckets, invoice amount buckets, and customer-level summaries for reporting).
-Lakehouse – Loaded all three layers into lh_finance as structured Delta tables, with Bronze, Silver, and Gold sitting inside the same lakehouse.
-Security – Applied column-level security (hiding InvoiceAmount) and row-level security (filtering by countryCode) directly on lh_finance using OneLake security, so protection is enforced consistently across every engine that queries it, not just the report.
-Semantic Model – Built Finance_semantic, which automatically inherits the OneLake security rules with no separate configuration needed.
-Report – Created the Finance Analysis report in Power BI, with separate pages for Collections (who's chronically late) and Treasury (cash flow and DSO trends).
-App – Published App_Finance for end-user access.
+## 5. Workflow
+The end-to-end pipeline was built entirely within Microsoft Fabric:
+
+- **Workspace** – Created `ws_finance` to host all Fabric items for this project.
+- **Notebook** – Created a PySpark notebook and built the pipeline following medallion architecture: **Bronze** (raw invoice data ingested, checked types/nulls/row counts), **Silver** (cleaned, correctly typed, deduplicated), and **Gold** (aggregated and enriched with aging buckets, invoice amount buckets, and customer-level summaries for reporting).
+- **Lakehouse** – Loaded all three layers into `lh_finance` as structured Delta tables, with Bronze, Silver, and Gold sitting inside the same lakehouse.
+- **Security** – Applied column-level security (hiding `InvoiceAmount`) and row-level security (filtering by `countryCode`) directly on `lh_finance` using OneLake security, so protection is enforced consistently across every engine that queries it, not just the report.
+- **Semantic Model** – Built `Finance_semantic`, which automatically inherits the OneLake security rules with no separate configuration needed.
+- **Report** – Created the Finance Analysis report in Power BI, with separate pages for Collections (who's chronically late) and Treasury (cash flow and DSO trends).
+- **App** – Published `App_Finance` for end-user access.
 
 ![Workflow](images/workflow.png)
 
-7. Feature Highlights
-Business Problem
-I used AI as a client, roleplaying as Rakesh from Finance department where Our company sells on credit to distributors and business clients — standard 30/45/60 day payment terms. Over the last few quarters, our Days Sales Outstanding (DSO) has been creeping up. Cash that should be in our account is sitting with customers longer than it should.
+## 6. Feature Highlights
 
-Key Questions:
+### Business Problem
+I used AI as a client, roleplaying as Rakesh from the Finance department, where the company sells on credit to distributors and business clients under standard 30/45/60-day payment terms. Over the last few quarters, the company's Days Sales Outstanding (DSO) had been creeping up — cash that should be in the company's account was sitting with customers longer than it should.
 
-How much money are we actually talking about?
-Which customers have consistently been late?
-Is there a pattern in why people pay late?
-Is late payment behavior worsening month over month?
-When customers are late, how late?
+**Key Questions:**
+- How much money are we actually talking about?
+- Which customers have consistently been late?
+- Is there a pattern in why people pay late?
+- Is late payment behavior worsening month over month?
+- When customers are late, how late?
 
-Goal of the Dashboard
-The goal of this dashboard was to create an interactive report that helped Finance department understand the cause of such a delay in payments, given that the standard 30/45/60 day payment terms. This dashboard helped Rakesh from Finance communicate to leadership and senior management what steps could be taken to reduce and manage DSO by identifying its key drivers.
+### Goal of the Dashboard
+The goal of this dashboard was to create an interactive report that helped the Finance department understand the cause of payment delays relative to the standard 30/45/60-day payment terms. This dashboard helped Rakesh from Finance communicate to leadership and senior management what steps could be taken to reduce and manage DSO by identifying its key drivers.
 
-Key Visuals
-KPI'S used in this report:
-1. Money at risk: 53.96K - total invoice amount with late customers
-2. late customers: 83 - count of customers who paid late
-3. total customer:100 - distinct count of customers
-4. late customer % YoY Comparison: -3.51% - late payment performance improved by 3.51%
-5. avg days late: 9.68 - avg days customer paid after invoice date
+### Key Visuals
 
-slicers used
-1. year - invoice year
-2. month - invoice month
-3. country code
+**KPIs used in this report:**
+- **Money at Risk:** 53.96K — total invoice amount with late customers
+- **Late Customers:** 83 — count of customers who paid late
+- **Total Customers:** 100 — distinct count of customers
+- **Late Customer % YoY Comparison:** -3.51% — late payment performance improved by 3.51%
+- **Avg Days Late:** 9.68 — average days a customer paid after the invoice date
 
-Total Invoices and Customer % Late Trend over time
-this chart is line and column combo chart in which the column represents the total invoices each month and line represents late customer %. so that we can see out of these many invoices see much % were late
+**Slicers used:**
+- Year (invoice year)
+- Month (invoice month)
+- Country Code
 
-Customer % Late by Disputed Bills
-this chart is a bar chart which shows if the bill is disputed drives the late payment issues or not.
+**Total Invoices and Customer % Late Trend Over Time:**
+A line-and-column combo chart where columns represent total invoices each month and the line represents late customer % — showing what proportion of invoices were late over time.
 
-Customers Late by 30+ days 
-this is a matrix of customers who paid after 30+ days to see whether the amount to be paid by them was more or not as it will help us plan our treasury easily and in advance 
+**Customer % Late by Disputed Bills:**
+A bar chart showing whether disputed bills drive late payment issues.
 
-Top 10 Customers by Avg Days Late
-this is a matrix of customers who paid max of the payments late i.e max late customer % and it also consists of total invoices and avg days late
+**Customers Late by 30+ Days:**
+A matrix of customers who paid after 30+ days, showing whether the amount owed by them was significant — helping plan treasury more easily and in advance.
 
-Customer % Late by Type of Bills
-this is a bar chart that helps us understand whether paper bills or electronics bills are late or not. so that we can plan accordingly to shift to that bill which causes less late payment
+**Top 10 Customers by Avg Days Late:**
+A matrix of the customers with the highest late payment %, along with total invoices and average days late.
 
-7. Insights
+**Customer % Late by Type of Bill:**
+A bar chart showing whether paper bills or electronic bills are more likely to be late, helping plan a shift toward the bill type that causes fewer late payments.
 
- - Money at risk i.e. the total amount with late customer is 53.96K
- - the DSO or we can say the late customer % year over year has improved by 3.5%.
- - the top 10 customers whose late customer % is high needs to be called first.
- - some of the customers who pay after 30 days are having high invoice amount.
- - the bills that are disputed tends to have more late payments
- - paper bills tends to generate more late payments
- - the bills with large income amount band are receiving the most late payments
+## 7. Insights
+- Money at risk — the total amount with late customers — is 53.96K.
+- DSO, or late customer %, has improved by 3.5% year over year.
+- The top 10 customers with the highest late-payment % need to be contacted first.
+- Some customers who pay after 30 days also carry high invoice amounts.
+- Disputed bills tend to have more late payments.
+- Paper bills tend to generate more late payments.
+- Bills in the larger invoice amount band receive the most late payments.
 
-8. Business Impact
-
-   - the treasury needs to be planned according to money at risk i.e. 53.96K
-   - the dso is getting better year by year but needs to be improved further
-   - the collection teams needs to call the top 10 customers first in order to plan treasury well
-   - the customers with avg days late more than 30 and having high invoice amount needs strict action.
-   - the customers should be encoraged more to shift towards electronic bills
-   - the customers who borrowed large income amount needs to checked more frequently and know the status of receiving money well in advance
+## 8. Business Impact
+- Treasury planning should account for the money at risk — 53.96K.
+- DSO is improving year over year but needs further improvement.
+- Collection teams should call the top 10 late-paying customers first to plan treasury effectively.
+- Customers with average days late greater than 30 and high invoice amounts need strict follow-up action.
+- Customers should be encouraged to shift toward electronic bills.
+- Customers with large invoice amounts should be checked more frequently to track payment status.
   
 ## 9. Screenshots
-**Workspace (ws_HR)**
+**Workspace (ws_finance)**
 ![Workspace](images/Workspace.png)
-**Data in Dataflow Gen2 (Df_HR)**
+**Data ingesting through pipeline(pl_ingest_finance)**
 ![Dataflow_Gen2_data](images/Dataflow_Gen2_data.png)
-**Data loading to Lakehouse (lh_HR)**
+**Data loading to Lakehouse (lh_finance)**
 ![Dataflow_Gen2_to_Lakehouse](images/Dataflow_Gen2_to_Lakehouse.png)
-**Data in Lakehouse (Df_HR)**
+**Data in Lakehouse (lh_finance)**
 ![Lakehouse](images/Lakehouse.png)
-**Semantic Model (HR Semantic)**
+**Semantic Model (Finance_Model)**
 ![Semantic_Model](images/Semantic_Model.png)
 **Overview of Dashboard**
 ![Overview](images/Overview.png)
-**Deep Dive of Dashboard**
+**Implementing Row Level Security**
 ![Deep Dive](images/Deep_Dive.png)
-**Implementing Column Level Security**
+**Row Level Security Applied**
 ![CLS](images/CLS.png)
 **Column Level Security Applied**
 ![Column_Level_Security](images/Column_Level_Security.png)
-**App (App_HR)**
+**App (App_Finance)**
 ![App_Overview](images/App_Overview.png)
-![App_Deep_dive](images/App_Deep_dive.png)
+
